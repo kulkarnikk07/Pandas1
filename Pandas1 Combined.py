@@ -2,7 +2,12 @@
 
 # 1 Problem 1 : Make a Pandas DataFrame with two-dimensional list	(	https://www.geeksforgeeks.org/make-a-pandas-dataframe-with-two-dimensional-list-python/)
 
-
+import pandas as pd  
+    
+lst = [['Geek', 25], ['is', 30], 
+       ['for', 26], ['Geeksforgeeks', 22]] 
+df = pd.DataFrame(lst, columns =['Tag', 'number']) 
+print(df )
 
 # 2 Problem 2 :Big Countries	(	https://leetcode.com/problems/big-countries/ )
 
@@ -23,3 +28,10 @@ def find_products(products: pd.DataFrame) -> pd.DataFrame:
 
 # 4 Problem 4 :Customer Who Never Order	(	https://leetcode.com/problems/customers-who-never-order/  )
 
+import pandas as pd
+
+def find_customers(customers: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
+    
+    df = customers.merge(orders, left_on = 'id', right_on = 'customerId' , how = 'left')
+    df = df[df['customerId'].isna()]
+    return df[['name']].rename(columns={'name':'Customers'})
